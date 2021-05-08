@@ -1,0 +1,67 @@
+<div class="gmap">
+  <h1>Osakana Map</h1>
+
+</div>
+
+<script type="text/javascript">
+  let map
+  let geocoder
+  let marker
+  let infoWindow
+
+function initMap() {
+    geocoder = new google.maps.Geocoder()
+
+ 
+    map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 8,
+         center: new google.maps.LatLng(35.449585, 139.895904),
+    });
+
+
+
+    var locations = [
+       ["<a href='osakanas/new'>東京駅</a>", 35.683,139.767],
+       ["<a href='osakanas/new'>旧江戸川河口</a>", 35.641792, 139.873567],
+       ["<a href='osakanas/new'>笹目橋</a>", 35.80119041447789, 139.64665487413214],
+       ["<a href='osakanas/new'>館山</a>", 34.99406547756266, 139.85713801292172]
+    ];
+    var infowindow = new google.maps.InfoWindow;
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+        marker = new google.maps.Marker({
+             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+             map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+             return function() {
+                 infowindow.setContent(locations[i][0]);
+                 infowindow.open(map, marker);
+             }
+        })(marker, i));
+    }
+}
+
+
+</script>
+
+<style type="text/css">
+  #map { height: 400px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+    width: 80%;}
+</style>
+
+<div id="map"></div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["API_KEY"] %>&callback=initMap" async defer>
+</script>
+
+<div>
+  <%# 投稿機能実装後、部分テンプレートでプロトタイプ投稿一覧を表示する %>
+  <%= render partial: 'osakana' %>
+</div>
