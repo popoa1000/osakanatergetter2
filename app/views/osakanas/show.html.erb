@@ -2,29 +2,31 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= "プロトタイプのタイトル"%>
+        <%= @osakana.fish %>
       </p>
-      <%= link_to "by プロトタイプの投稿者", root_path, class: :prototype__user %>
+      <%= link_to (@osakana.user.nickname + "さんの釣果"), root_path, class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <% if user_signed_in? && current_user.id == @osakana.user_id %>
         <div class="prototype__manage">
-          <%= link_to "編集する", root_path, class: :prototype__btn %>
-          <%= link_to "削除する", root_path, class: :prototype__btn %>
+          <%= link_to "編集する", edit_osakana_path(@osakana.id), class: :prototype__btn %>
+          <%= link_to "削除する", osakana_path(@osakana.id),method: :delete, class: :prototype__btn %>
         </div>
+      <%end%>
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
       <div class="prototype__image">
-        <%#= image_tag "プロトタイプの画像" %>
+        <%= image_tag @osakana.image %>
       </div>
       <div class="prototype__body">
         <div class="prototype__detail">
-          <p class="detail__title">キャッチコピー</p>
+          <p class="detail__title">仕掛け</p>
           <p class="detail__message">
-            <%= "プロトタイプのキャッチコピー" %>
+            <%= @osakana.tackle %>
           </p>
         </div>
         <div class="prototype__detail">
-          <p class="detail__title">コンセプト</p>
+          <p class="detail__title">仕掛けの詳細</p>
           <p class="detail__message">
-            <%= "プロトタイプのコンセプト" %>
+            <%= @osakana.details %>
           </p>
         </div>
       </div>

@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root to: "osakanas#index"
   resources :osakanas
   resources :users
+  resources :spots, only: [:create]
 end

@@ -3,6 +3,12 @@
 
 </div>
 
+<div id="map"></div>
+  <ul>
+    <li>lat: <span id="lat"></span></li>
+    <li>lng: <span id="lng"></span></li>
+  </ul>
+
 <script type="text/javascript">
   let map
   let geocoder
@@ -12,13 +18,10 @@
 function initMap() {
     geocoder = new google.maps.Geocoder()
 
- 
     map = new google.maps.Map(document.getElementById('map'), {
          zoom: 8,
          center: new google.maps.LatLng(35.449585, 139.895904),
     });
-
-
 
     var locations = [
        ["<a href='osakanas/new'>東京駅</a>", 35.683,139.767],
@@ -42,7 +45,29 @@ function initMap() {
              }
         })(marker, i));
     }
+
+    map.addListener('click', function(e) {
+        getClickLatLng(e.latLng, map);
+      });
+
 }
+
+function getClickLatLng(lat_lng, map) {
+
+      // 座標を表示
+      //document.getElementById('lat').textContent = lat_lng.lat();
+      //document.getElementById('lng').textContent = lat_lng.lng();
+
+      // マーカーを設置
+      var marker = new google.maps.Marker({
+        position: lat_lng,
+        map: map
+      });
+
+      // 座標の中心をずらす
+      // http://syncer.jp/google-maps-javascript-api-matome/map/method/panTo/
+      map.panTo(lat_lng);
+    }
 
 
 </script>
