@@ -1,0 +1,39 @@
+
+<div class='osakana-contents'>
+  <h2 class='title'>釣果情報</h2>
+  <ul class='osakana-lists'>
+    <% if @osakanas.present? %>
+      <% @osakanas.each do |osakana| %>
+        <li class='list'>
+          <%= link_to osakana_path(osakana.id) do%>
+            <div class='osakana-image-content'>
+              <%= image_tag osakana.image, class: "osakana-img" %>
+            </div>
+            <div class='osakana-info'>
+              <h3 class='osakana-name'>
+                <%= osakana.fish %>
+              </h3>
+            <div class='item-spot'>
+              <%= "umikakawa" %>
+            </div>
+            <%= link_to osakana.user.nickname, user_path(osakana.user.id) %>
+          <% end %>
+        </li>
+      <% end %>
+    <% else %>
+      <li class='list'>
+        <%= link_to '#' do %>
+          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "osakana-img" %>
+          <div class='osakana-info'>
+            <h3 class='osakana-fish'>
+              釣果を投稿してね！
+            </h3>
+            <div class='osakana-spot'>
+              <span>marunouti</span>
+            </div>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

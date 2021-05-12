@@ -1,0 +1,31 @@
+<%= form_with(url: osakanas_path, local: true) do |f|%>
+
+  <div class="field">
+    <%= f.label :title, "釣れた場所" %><br />
+    <%= f.text_field :title, id:"spot_title" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fish, "魚の名前" %><br />
+    <%= f.text_field :fish, id:"osakana_fish" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tackle, "仕掛け" %><br />
+    <%= f.text_area :tackle, class: :form__text, id:"osakana_tackle" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :details, "仕掛けの詳細" %><br />
+    <%= f.text_area :details, class: :form__text, id:"osakana_details" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "魚の画像" %><br />
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存する", class: :form__btn  %>
+  </div>
+<% end %>
