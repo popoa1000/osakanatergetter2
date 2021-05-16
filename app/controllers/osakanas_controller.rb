@@ -5,7 +5,7 @@ class OsakanasController < ApplicationController
   end
 
   def new
-    @osakana = Osakana.new
+    @osakana_spot = OsakanaSpot.new
   end
 
   def show
@@ -27,12 +27,12 @@ class OsakanasController < ApplicationController
   end
 
   def create
-    osakana = Osakana.create(osakana_params)
-    Spot.create(spot_params(osakana))
-    if osakana.save
-      redirect_to root_path
+    @osakana_spot = OsakanaSpot.new(osakana_params)
+    if @osakana_spot.valid?
+      @osakana_spot.save
+      redirect_to action: :index
     else
-      render :new
+      render action: :new
     end
   end
 
@@ -46,12 +46,7 @@ class OsakanasController < ApplicationController
 
   private
   def osakana_params
-    params.permit(:fish, :tackle, :details, :image).merge(user_id: current_user.id)
+    params.require(:osakana_spot).permit(:fish, :tackle, :details, :image, :title,)
   end
-
-  def spot_params(osakana)
-    params.permit(:title).merge(osakana_id: osakana.id)
-  end
-
 
 end

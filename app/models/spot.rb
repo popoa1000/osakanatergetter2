@@ -1,7 +1,5 @@
 class Spot < ApplicationRecord
-  has_many :osakana
+  has_many :osakana, foreign_key:  'Spot_id'
 
-  validates :latitude, presence: true
-  validates :longitude, presence: true
-  validates :title, presence: true 
+
 end
