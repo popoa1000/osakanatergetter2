@@ -15,7 +15,7 @@
   let marker
   let infoWindow
 
-function initMap() {
+  function initMap() {
     geocoder = new google.maps.Geocoder()
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -49,25 +49,26 @@ function initMap() {
     map.addListener('click', function(e) {
         getClickLatLng(e.latLng, map);
       });
+  }
 
-}
-
-function getClickLatLng(lat_lng, map) {
-
+  function getClickLatLng(lat_lng, map) {
       // 座標を表示
       //document.getElementById('lat').textContent = lat_lng.lat();
       //document.getElementById('lng').textContent = lat_lng.lng();
+      var infowindow = new google.maps.InfoWindow;
+      var marker, i;
 
       // マーカーを設置
       var marker = new google.maps.Marker({
         position: lat_lng,
         map: map
+
       });
 
       // 座標の中心をずらす
       // http://syncer.jp/google-maps-javascript-api-matome/map/method/panTo/
       map.panTo(lat_lng);
-    }
+  }
 
 
 </script>
@@ -76,14 +77,13 @@ function getClickLatLng(lat_lng, map) {
   #map { height: 400px;
     margin-left:auto;
     margin-right:auto;
+    margin-bottom: 0px;
     text-align:left;
     width: 80%;}
 </style>
 
-<div id="map"></div>
 
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["API_KEY"] %>&callback=initMap" async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY']%>&callback=initMap" async defer>
 </script>
 
 <div>
