@@ -1,5 +1,5 @@
-<%= form_with(url: osakanas_path, local: true) do |f|%>
-
+<%= form_with(model: @osakana_spot, url: osakanas_path, local: true) do |f|%>
+  <%#= render 'error_messages', model: @user_donation %>
   <div class="field">
     <%= f.label :title, "釣れた場所" %><br />
     <%= f.text_field :title, id:"spot_title" %>

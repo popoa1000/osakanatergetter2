@@ -30,9 +30,9 @@ class OsakanasController < ApplicationController
     @osakana_spot = OsakanaSpot.new(osakana_params)
     if @osakana_spot.valid?
       @osakana_spot.save
-      redirect_to action: :index
+      redirect_to root_path
     else
-      render action: :new
+      render :new
     end
   end
 
@@ -46,7 +46,7 @@ class OsakanasController < ApplicationController
 
   private
   def osakana_params
-    params.require(:osakana_spot).permit(:fish, :tackle, :details, :image, :title,)
+    params.require(:osakana_spot).permit(:fish, :tackle, :details, :image, :title).merge(user_id: current_user.id)
   end
 
 end
