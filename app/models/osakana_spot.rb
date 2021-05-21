@@ -1,6 +1,6 @@
 class OsakanaSpot
   include ActiveModel::Model
-  attr_accessor :fish, :tackle, :details, :image, :title, :user_id
+  attr_accessor :fish, :tackle, :details, :image, :title, :user_id, :spot_id
 
   validates :fish,        presence: true
   validates :tackle,      presence: true
@@ -15,7 +15,7 @@ class OsakanaSpot
 
   def save
     spot = Spot.create(title: title)
-    Osakana.create(fish: fish, tackle: tackle, details: details, image: image, user_id: user_id)
+    Osakana.create(fish: fish, tackle: tackle, details: details, image: image, user_id: user_id, spot_id: spot.id)
   end
 
 end

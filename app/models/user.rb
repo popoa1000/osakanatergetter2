@@ -6,5 +6,5 @@ class User < ApplicationRecord
   
   validates :nickname,       presence: true
 
-  has_many :osakanas, foreign_key: 'User_id'
+  has_many :osakanas
 end

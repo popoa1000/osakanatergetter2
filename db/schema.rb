@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_152650) do
+ActiveRecord::Schema.define(version: 2021_05_08_020522) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -37,9 +37,11 @@ ActiveRecord::Schema.define(version: 2021_05_08_152650) do
     t.string "fish", default: "", null: false
     t.text "tackle", null: false
     t.text "details"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
+    t.bigint "spot_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["spot_id"], name: "index_osakanas_on_spot_id"
     t.index ["user_id"], name: "index_osakanas_on_user_id"
   end
 
@@ -63,5 +65,6 @@ ActiveRecord::Schema.define(version: 2021_05_08_152650) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "osakanas", "spots"
   add_foreign_key "osakanas", "users"
 end

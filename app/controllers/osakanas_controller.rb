@@ -1,7 +1,7 @@
 class OsakanasController < ApplicationController
 
   def index
-    @osakanas = Osakana.all
+    @osakanas = Osakana.includes(:user)
   end
 
   def new
@@ -46,7 +46,7 @@ class OsakanasController < ApplicationController
 
   private
   def osakana_params
-    params.require(:osakana_spot).permit(:fish, :tackle, :details, :image, :title).merge(user_id: current_user.id)
+    params.require(:osakana_spot).permit(:fish, :tackle, :details, :image, :title, :spot_id).merge(user_id: current_user.id)
   end
 
 end
