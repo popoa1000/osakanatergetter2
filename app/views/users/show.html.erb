@@ -2,27 +2,37 @@
   <div class="inner">
     <div class="user__wrapper">
       <h2 class="page-heading">
-        <%= @user.name+"さんの情報"%>
+        <%= @user.nickname+"さんの情報"%>
       </h2>
       <table class="table">
         <tbody>
           <tr>
             <th class="table__col1">名前</th>
-            <td class="table__col2"><%= @user.name %></td>
+            <td class="table__col2"><%= @user.nickname %></td>
           </tr>
           <tr>
-            <th class="table__col1">プロフィール</th>
-            <td class="table__col2"><%= @user.profile %></td>
+            <%#<th class="table__col1">プロフィール</th>
+            <%#<td class="table__col2"><%= @user.profile %></td>
           </tr>
           
         </tbody>
       </table>
       <h2 class="page-heading">
-        <%= @user.name + "さんのプロトタイプ"%>
+        <%= @user.nickname + "さんの釣果"%>
       </h2>
       <div class="user__card">
         <%# 部分テンプレートでそのユーザーが投稿したプロトタイプ投稿一覧を表示する %>
-        <%= render partial: 'prototypes/prototype', collection: @user.prototypes %>
+        <div class="card">
+        <%= link_to (image_tag @osakana.image, class: 'osakana-image'), osakana_path(@osakana.id)%>
+        <div class="card__body">
+          <%= link_to @osakana.fish, osakana_path(@osakana.id), class: :card__title%>
+          <p class="card__summary">
+          <%= @osakana.spot.title %>
+          </p>
+        <%= link_to "by"+ @osakana.user.nickname, user_path(@osakana.user.id), class: :card__user %>
+        </div> 
+      </div>
+        <%#= render partial: 'osakanas/osakana', collection: @user.osakanas %>
       </div>
     </div>
   </div>

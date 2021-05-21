@@ -6,17 +6,18 @@
       <% @osakanas.each do |osakana| %>
         <li class='list'>
           <%= link_to osakana_path(osakana.id) do%>
+            <%= link_to osakana.user.nickname + "さんの釣果", user_path(osakana.user.id) %>
             <div class='osakana-image-content'>
               <%= image_tag osakana.image, class: "osakana-img" %>
             </div>
             <div class='osakana-info'>
               <h3 class='osakana-name'>
-                <%= osakana.fish %>
+                <%= "種類:"+ osakana.fish %>
               </h3>
             <div class='item-spot'>
-              <%= "umikakawa" %>
+              <%= "場所:" + osakana.spot.title %>
             </div>
-            <%= link_to osakana.user.nickname, user_path(osakana.user.id) %>
+            
           <% end %>
         </li>
       <% end %>
