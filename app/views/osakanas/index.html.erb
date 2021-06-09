@@ -53,8 +53,8 @@
 
   function getClickLatLng(lat_lng, map) {
       // 座標を表示
-      //document.getElementById('lat').textContent = lat_lng.lat();
-      //document.getElementById('lng').textContent = lat_lng.lng();
+      document.getElementById('lat').textContent = lat_lng.lat();
+      document.getElementById('lng').textContent = lat_lng.lng();
       var infowindow = new google.maps.InfoWindow;
       var marker, i;
 
@@ -88,11 +88,11 @@
     width: 80%;}
 </style>
 
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
+<script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAP_API_KEY}&callback=initMap`>
+//<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer>
 </script>
 
 <div>
-  <%# 投稿機能実装後、部分テンプレートでプロトタイプ投稿一覧を表示する %>
+  <%# 投稿機能実装後、部分テンプレートで投稿一覧を表示する %>
   <%= render partial: 'osakana' %>
 </div>
