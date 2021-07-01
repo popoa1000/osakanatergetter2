@@ -8,7 +8,7 @@
           <%= link_to osakana_path(osakana.id) do%>
             <%= link_to osakana.user.nickname + "さんの釣果", user_path(osakana.user.id) %>
             <div class='osakana-image-content'>
-              <%= image_tag osakana.image, class: "osakana-img" %>
+              <%= link_to (image_tag osakana.image, class: 'osakana-image'), osakana_path(osakana.id)%>
             </div>
             <div class='osakana-info'>
               <h3 class='osakana-name'>

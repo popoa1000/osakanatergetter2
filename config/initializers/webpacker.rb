@@ -1,1 +1,1 @@
-Webpacker::Compiler.env['API_KEY'] = ENV['API_KEY']
+Webpacker::Compiler.env['GOOGLE_MAP_API_KEY'] = ENV['GOOGLE_MAP_API_KEY']
